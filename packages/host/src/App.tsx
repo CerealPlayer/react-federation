@@ -5,7 +5,7 @@ import "./App.css";
 import { RemoteMfeLoader } from "./RemoteMfeLoader";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     console.log("from react " + version);
@@ -23,14 +23,14 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+        <button onClick={() => setOpen((prev) => !prev)}>
+          Mfe is {open ? "open" : "not open"}
         </button>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
       </div>
-      {count >= 2 && <RemoteMfeLoader />}
+      {open && <RemoteMfeLoader />}
     </>
   );
 }

@@ -1,6 +1,7 @@
 import { useEffect, useState, version } from "react";
 
-export function RemoteComp() {
+export function RemoteComp(props: any) {
+  console.log(props);
   const [count, setCount] = useState(0);
 
   useEffect(() => {

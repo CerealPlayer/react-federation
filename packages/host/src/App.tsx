@@ -2,7 +2,7 @@ import { useEffect, useState, version } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
-import { Remote } from "remote/App";
+import { RemoteMfeLoader } from "./RemoteMfeLoader";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -30,7 +30,7 @@ function App() {
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
       </div>
-      {count >= 2 && <Remote />}
+      {count >= 2 && <RemoteMfeLoader />}
     </>
   );
 }

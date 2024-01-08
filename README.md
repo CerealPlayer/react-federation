@@ -1,6 +1,6 @@
 # React Microfrontend Example with Vite Federation Plugin
 
-In `/packages` you'll find a host app and a microfrontend called `remote` that exposes a React component wrapped in a web component. The project uses Vite with `@originjs/vite-plugin-federation` to build a remote entry and share libs like React and ReactDOM.
+In `/packages` you'll find a host app and a microfrontend called `remote` that exposes a React component wrapped in a shadow root. The project uses Vite with `@originjs/vite-plugin-federation` to build a remote entry and share libs like React and ReactDOM.
 
 ## Start
 

@@ -3,6 +3,9 @@
   "pipeline": {
     "start": {
       "dependsOn": ["^start"]
+    },
+    "start-webpack": {
+      "dependsOn": ["^start-webpack"]
     }
   }
 }

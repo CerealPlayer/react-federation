@@ -1,4 +1,4 @@
-import css from "./index.css?inline";
+// import css from "./index.css";
 import { RemoteComp } from "./App";
 import { Root, createRoot } from "react-dom/client";
 
@@ -15,7 +15,7 @@ export function registerMFE() {
       this._shadowRoot = this.attachShadow({ mode: "open" });
 
       const style = document.createElement("style");
-      style.textContent = css;
+      // style.textContent = css.toString();
 
       this._shadowRoot.append(style);
       this.render();

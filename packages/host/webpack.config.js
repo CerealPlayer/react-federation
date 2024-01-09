@@ -6,7 +6,7 @@ module.exports = {
   entry: "./src/main.tsx",
   mode: "development",
   devServer: {
-    port: 3001,
+    port: 3000,
     open: true,
     headers: {
       "Access-Control-Allow-Origin": "*",
@@ -24,24 +24,23 @@ module.exports = {
       },
       {
         test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
+        use: ["css-loader"],
       },
     ],
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: "remote",
-      filename: "remoteEntry.js",
-      exposes: {
-        "./App": "./src/main.tsx",
+      name: "host",
+      remotes: {
+        remote: "remote@http://localhost:3001/remoteEntry.js",
       },
       shared: {
         ...deps,
-        react: { requiredVersion: deps.react, singleton: true, eager: true },
+        react: { version: deps.react, singleton: true, eager: true },
         "react-dom": {
-          requiredVersion: deps["react-dom"],
-          eager: true,
           singleton: true,
+          eager: true,
+          version: deps["react-dom"],
         },
       },
     }),

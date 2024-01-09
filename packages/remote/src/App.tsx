@@ -1,4 +1,5 @@
 import { useEffect, useState, version } from "react";
+console.log("from remote with version " + version);
 
 export function RemoteComp(props: any) {
   console.log(props);

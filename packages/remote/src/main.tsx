@@ -1,6 +1,12 @@
 import css from "./index.css?inline";
+<<<<<<< Updated upstream
 import { RemoteComp } from "./App";
 import { Root, createRoot } from "react-dom/client";
+=======
+import React, { Suspense } from "react";
+const RemoteComp = React.lazy(() => import("./App"));
+import type { Root } from "react-dom/client";
+>>>>>>> Stashed changes
 
 export function registerMFE() {
   class WebComponent extends HTMLElement {
@@ -14,10 +20,15 @@ export function registerMFE() {
     connectedCallback() {
       this._shadowRoot = this.attachShadow({ mode: "open" });
 
+<<<<<<< Updated upstream
       const style = document.createElement("style");
       style.textContent = css;
+=======
+      const styleSheet = new CSSStyleSheet();
+      styleSheet.replaceSync(css);
+>>>>>>> Stashed changes
 
-      this._shadowRoot.append(style);
+      this._shadowRoot.adoptedStyleSheets = [styleSheet];
       this.render();
     }
 
@@ -30,7 +41,7 @@ export function registerMFE() {
       this.render();
     }
 
-    render() {
+    async render() {
       if (!this._shadowRoot) return;
       const props = {
         ...this.reactProps,
@@ -38,10 +49,19 @@ export function registerMFE() {
       };
 
       if (this._reactRoot) {
-        this._reactRoot.render(RemoteComp(props));
+        this._reactRoot.render(
+          <Suspense fallback="Loading">
+            <RemoteComp {...props} />
+          </Suspense>
+        );
       } else {
-        this._reactRoot = createRoot(this._shadowRoot);
-        this._reactRoot.render(RemoteComp(props));
+        const ReactDOM = await import("react-dom/client");
+        this._reactRoot = ReactDOM.createRoot(this._shadowRoot);
+        this._reactRoot.render(
+          <Suspense fallback="Loading">
+            <RemoteComp {...props} />
+          </Suspense>
+        );
       }
     }
   }

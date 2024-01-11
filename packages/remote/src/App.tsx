@@ -5,8 +5,8 @@ export function RemoteComp(props: any) {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    console.log("from react " + version);
-  }, []);
+    console.log("from remote " + version);
+  });
 
   return (
     <div className="mfe-container">

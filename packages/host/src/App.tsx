@@ -8,7 +8,7 @@ function App() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    console.log("from host " + version);
+    console.log("from react " + version);
   }, []);
 
   return (

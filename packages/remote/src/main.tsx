@@ -1,5 +1,6 @@
 import css from "./index.css?inline";
 import React, { Suspense } from "react";
+import ReactDOM from "react-dom/client";
 const RemoteComp = React.lazy(() => import("./App"));
 import type { Root } from "react-dom/client";
 
@@ -45,7 +46,6 @@ export function registerMFE() {
           </Suspense>
         );
       } else {
-        const ReactDOM = await import("react-dom/client");
         this._reactRoot = ReactDOM.createRoot(this._shadowRoot);
         this._reactRoot.render(
           <Suspense fallback="Loading">

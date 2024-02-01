@@ -1,18 +1,15 @@
-import { useEffect, useState, version } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setCount } from "./store";
 
-export function RemoteComp(props: any) {
-  console.log(props);
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    console.log("from remote " + version);
-  });
+export function RemoteComp() {
+  const count = useSelector<{ count: number }, number>((state) => state.count);
+  const dispatch = useDispatch();
 
   return (
     <div className="mfe-container">
       <h1>Microfrontend</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
+        <button onClick={() => dispatch(setCount(count + 1))}>
           count is {count}
         </button>
       </div>

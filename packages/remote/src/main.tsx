@@ -3,6 +3,8 @@ import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
 const RemoteComp = React.lazy(() => import("./App"));
 import type { Root } from "react-dom/client";
+import { Provider } from "react-redux";
+import { store } from "./store";
 
 export function registerMFE() {
   class WebComponent extends HTMLElement {
@@ -49,7 +51,9 @@ export function registerMFE() {
         this._reactRoot = ReactDOM.createRoot(this._shadowRoot);
         this._reactRoot.render(
           <Suspense fallback="Loading">
-            <RemoteComp {...props} />
+            <Provider store={store}>
+              <RemoteComp {...props} />
+            </Provider>
           </Suspense>
         );
       }
@@ -58,3 +62,19 @@ export function registerMFE() {
 
   customElements.define("remote-mfe", WebComponent);
 }
+
+function setCount(number: number) {
+  store.dispatch({ type: "SET_COUNT", payload: number });
+}
+
+declare global {
+  interface Window {
+    _remote_methods: {
+      setCount: (number: number) => void;
+    };
+  }
+}
+
+window._remote_methods = {
+  setCount,
+};

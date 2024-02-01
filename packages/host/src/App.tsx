@@ -3,6 +3,7 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 import { RemoteMfeLoader } from "./RemoteMfeLoader";
+import { Remote2MfeLoader } from "./Remote2MfeLoader";
 
 function App() {
   const [open, setOpen] = useState(false);
@@ -31,6 +32,7 @@ function App() {
         </p>
       </div>
       {open && <RemoteMfeLoader />}
+      <Remote2MfeLoader />
     </>
   );
 }

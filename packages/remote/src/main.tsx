@@ -62,19 +62,3 @@ export function registerMFE() {
 
   customElements.define("remote-mfe", WebComponent);
 }
-
-function setCount(number: number) {
-  store.dispatch({ type: "SET_COUNT", payload: number });
-}
-
-declare global {
-  interface Window {
-    _remote_methods: {
-      setCount: (number: number) => void;
-    };
-  }
-}
-
-window._remote_methods = {
-  setCount,
-};

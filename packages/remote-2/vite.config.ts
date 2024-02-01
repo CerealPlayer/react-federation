@@ -14,6 +14,9 @@ export default defineConfig({
       exposes: {
         "./App": "./src/main.tsx",
       },
+      remotes: {
+        remote: "http://localhost:3001/assets/remoteEntry.js",
+      },
       shared: {
         react: {
           requiredVersion: dependencies["react"],

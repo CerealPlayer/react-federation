@@ -13,6 +13,7 @@ export default defineConfig({
       name: "remote",
       exposes: {
         "./App": "./src/main.tsx",
+        "./count": "./src/count.ts"
       },
       shared: {
         react: {

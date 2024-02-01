@@ -1,21 +1,13 @@
 import { FormEventHandler } from "react";
-
-declare global {
-  interface Window {
-    _remote_methods: {
-      setCount(value: number): void;
-    };
-  }
-}
+import { setCount } from "remote/count";
 
 export function RemoteComp() {
   const submitHandler: FormEventHandler<HTMLFormElement> = (e) => {
-    if (!window._remote_methods || !window._remote_methods.setCount) return;
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const value = formData.get("value");
     if (!value) return;
-    window._remote_methods.setCount(parseInt(value.toString()));
+    setCount(parseInt(value.toString()));
   };
 
   return (

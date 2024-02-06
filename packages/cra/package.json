@@ -63,9 +63,10 @@
     "workbox-webpack-plugin": "^6.4.1"
   },
   "scripts": {
-    "start": "node scripts/start.js",
+    "start": "nodemon --exec \"npm run build && npm run serve\" --watch src -e ts,tsx,css",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
+    "test": "node scripts/test.js",
+    "serve": "serve -p 3000 --cors='*' build"
   },
   "eslintConfig": {
     "extends": [
@@ -140,5 +141,9 @@
     "presets": [
       "react-app"
     ]
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3",
+    "serve": "^14.2.1"
   }
 }
